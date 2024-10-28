@@ -2,39 +2,40 @@ import streamlit as st
 
 # Symptoms to disease mapping with advice
 symptom_disease_map = {
-    "بخار": {
-        "disease": "فلو",
-        "advice": "زیادہ پانی پئیں، آرام کریں، اور ڈاکٹر سے مشورہ کریں۔"
+    "fever": {
+        "disease": "Flu",
+        "advice": "Drink plenty of water, rest, and consult a doctor."
     },
-    "کھانسی": {
-        "disease": "نزلہ",
-        "advice": "گرم مشروبات لیں اور اگر علامات برقرار رہیں تو ڈاکٹر سے رجوع کریں۔"
+    "cough": {
+        "disease": "Cold",
+        "advice": "Drink warm beverages and see a doctor if symptoms persist."
     },
-    "سردرد": {
-        "disease": "مائیگرین",
-        "advice": "آرام کریں، اور اگر درد بڑھتا ہے تو ڈاکٹر سے مشورہ کریں۔"
+    "headache": {
+        "disease": "Migraine",
+        "advice": "Rest and consult a doctor if the pain worsens."
     },
-    "پیٹ میں درد": {
-        "disease": "معدے کا عارضہ",
-        "advice": "ہلکا پھلکا کھانا کھائیں اور پانی پیئیں، اگر درد برقرار رہے تو ڈاکٹر سے ملیں۔"
+    "stomach pain": {
+        "disease": "Gastrointestinal issue",
+        "advice": "Eat light meals and stay hydrated; consult a doctor if pain persists."
     },
-    # مزید علامات اور ان کے مشورے شامل کریں
+    # Add more symptoms and their corresponding advice
 }
 
 st.title("Health Symptoms Chatbot")
 
-user_input = st.text_input("آپ کی علامات کے بارے میں بتائیں:")
-if st.button("جواب حاصل کریں"):
+user_input = st.text_input("Describe your symptoms:")
+if st.button("Get Response"):
     if user_input:
         # Check if the user input is in the mapping
-        response = symptom_disease_map.get(user_input)
+        response = symptom_disease_map.get(user_input.lower())
         if response:
-            st.text_area("بیماری:", value=response['disease'], height=100)
-            st.text_area("مشورہ:", value=response['advice'], height=300)
+            st.text_area("Disease:", value=response['disease'], height=100)
+            st.text_area("Advice:", value=response['advice'], height=300)
         else:
-            st.text_area("چیٹ بوٹ:", value="مجھے اس علامت کے بارے میں معلومات نہیں ہیں۔", height=300)
+            st.text_area("Chatbot:", value="I don't have information about this symptom.", height=300)
     else:
-        st.warning("براہ کرم کوئی علامات درج کریں!")
+        st.warning("Please enter some symptoms!")
+
 
 
 
